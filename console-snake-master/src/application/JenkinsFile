@@ -29,6 +29,15 @@ pipeline {
                 }
             }
         }
+
+        stage('Analyse SonarQube') {
+            steps {
+                withSonarQubeEnv('SonarQube Server') {
+                    sh 'mvn sonar:sonar'
+                }
+            }
+        }
+        
         
         stage('Deploy') {
             when {
